@@ -1,37 +1,10 @@
-const Sequelize = require('sequelize');
-const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/my_db');
+const conn = require('./conn');
 
-const User = conn.define('user', {
-  name: Sequelize.STRING
-});
+const { Sequelize } = conn;
 
-User.prototype.getBuildings = function(){
-  return Apartment.findAll({
-    where: {
-      userId: this.id
-    },
-    include: [
-      Building
-    ]
-  })
-  .then( apartments => {
-    const all = apartments.map( apartment => apartment.building.name);
-    return all.reduce((unique, name)=> {
-      if(unique.indexOf(name) === -1){
-        unique.push(name);
-      }
-      return unique;
-    }, []);
-  });
-}
-
-const Building = conn.define('building', {
-  name: Sequelize.STRING
-});
-
-const Apartment = conn.define('apartment', {
-  name: Sequelize.STRING
-});
+const User = require('./User');
+const Building = require('./Building');
+const Apartment = require('./Apartment');
 
 Apartment.belongsTo(User);
 Apartment.belongsTo(Building);

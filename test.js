@@ -9,7 +9,6 @@ describe('my app', ()=> {
   });
   let buildings;
   beforeEach(()=> {
-    //buildings = ['666 Fifth Avenue', '10 CPW'];
     return User.findOne({ where:
       { name: 'moe'}
     })
