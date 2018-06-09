@@ -34,7 +34,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       # run tests!
-      - run: yarn test
+      - run:
+          command: yarn test
+          environment:
+            DATABASE_URL: postgres://huey@localhost/acme_buildings_db
 
 
 
