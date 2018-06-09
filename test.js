@@ -35,7 +35,7 @@ describe('my app', ()=> {
       .then( _larry => larry = _larry );
     });
     it('larry has one apartment', ()=> {
-      expect(larry.apartments.length).to.equal(2);
+      expect(larry.apartments.length).to.equal(1);
     });
   });
 });
